@@ -18,10 +18,12 @@ provider_url = os.getenv("PROVIDER_URL")
 sell_token_address = os.getenv("SELL_TOKEN_ADDRESS")
 buy_token_address = os.getenv("BUY_TOKEN_ADDRESS")
 sell_amount = os.getenv("SELL_AMOUNT")
+slippage = os.getenv("SLIPPAGE")
 accept_language = os.getenv("ACCEPT_LANGUAGE")
 sec_ch_ua = os.getenv("SEC_CH_UA")
 sec_ch_ua_platform = os.getenv("SEC_CH_UA_PLATFORM")
 user_agent = os.getenv("USER_AGENT")
+
 
 def quotePrice():
     url_quote = "https://starknet.api.avnu.fi/internal/swap/quotes-with-prices"
@@ -85,7 +87,7 @@ def buildTXN(quote_id):
     payload_build = {
         "quoteId": quote_id,
         "takerAddress": address,
-        "slippage": 0.001,
+        "slippage": float(slippage),
         "includeApprove": True
     }
 
