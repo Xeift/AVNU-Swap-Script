@@ -1,15 +1,15 @@
-import os
-import json
 import asyncio
+import json
+import os
+
 import requests
 from dotenv import load_dotenv
-from starknet_py.net.client_models import Call
+from starknet_py.hash.selector import get_selector_from_name
 from starknet_py.net.account.account import Account
+from starknet_py.net.client_models import Call
 from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
 from starknet_py.net.signer.stark_curve_signer import KeyPair
-from starknet_py.hash.selector import get_selector_from_name
-
 
 load_dotenv()
 address = os.getenv("ADDRESS")
@@ -146,7 +146,7 @@ async def main():
             failed += 1
             print(f"--------------------❌TXN Failed, success: {success} failed: {failed}--------------------\n")
             await asyncio.sleep(10)
-            # break
+        break
 
 
 asyncio.run(main())
